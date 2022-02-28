@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/header %>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <%include partials/navigation%>
+
+  <div class="container p-4">
+    <div class="row">
+
+    <%if (favs.length > 0) {%>
+
+    <% favs.forEach(function(fav) { %>
+    <div class="container p-1">
+      <div class="column-md-2">
+        <div class="card">
+          <div class="card-body bg-white text-black">
+            <h4><%= fav.text %></h4>
+            <h6><%= fav.created_at %></h6>
+          </div>
+           
+          <div class="card-header">
+          <a href="/delete/<%= fav.id %>" class="btn btn-primary btn-block ">
+            Delete
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+      
+    <%})%>
+
+    <%} else {%>
+    <div class="card card-body text-center">
+      <p>No Tweet yet. <a href="/new-entry">Add A New One</a></p>
+    </div>
+    <%}%>
+    </div>
+    <div class="container p-4">
+      <form action="/hacerPost" method="POST" target="/" class="card card-body">
+  
+        <div class="form-group">
+          <label for="text">Twit</label>
+          <input name="text" type="text" class="form-control" placeholder="Entry a New Title" autofocus required>
+        </div>
+        <div class="form-group">
+          <label for="id_str">ID</label>
+          <input name="id_str" type="text" class="form-control" placeholder="Entry a New ID" autofocus required>
+        </div>
+        
+        
+  
+        <div class="form-group">
+          <input type="submit" value="Post Entry" class="btn btn-primary">
+        </div>
+      </form>
+  
+    
+  </div>
+</div>
+<div class="container p-4">
+  
+
+    <div class="form-group">
+      
+  <form method="post" target="/" class="card card-body">
+
+      <input name="entrada" type="text" class="form-control" placeholder="Entry the id" autofocus required>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Get Entry" class="btn btn-primary">
+    </div>
+  
+  </form>
+  
+
+    <% favs.forEach(function(fav) { %>
+    <%if(fav.id_str==entrada){%>
+      
+        <div class="card-body bg-white text-black">
+          <h4><%= fav.text %></h4>
+          <h6><%= fav.created_at %></h6>
+        </div> 
+      
+      <% } %>
+    <% }); %>
+</div>
+
+
+
+</body>
+
+</html>
