@@ -1,5 +1,5 @@
-# GuestBook App
-this is a Online Books Application to put in practice your basic Node knowledge
+# Rest API
+API to GET, POST, DELETE a tweet
 
 # ScreenShoot
 ![image](https://user-images.githubusercontent.com/94149435/155929706-e1c124f6-a49c-4cfc-8914-c508e2669e74.png)
