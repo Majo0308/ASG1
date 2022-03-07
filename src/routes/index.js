@@ -31,7 +31,7 @@ router.post('/',(req, res) => {
 
 router.post('/:hacerPost', (req, res) => {
 
-  const { text, id_str} = req.body;
+  const { text, id_str, name, screen_name} = req.body;
   let date = new Date();
     let fecha = String(date.getDate()) + String(date.getMonth()) +  + date.getFullYear();
   if (!text || !id_str) {
@@ -39,10 +39,15 @@ router.post('/:hacerPost', (req, res) => {
     
     return;
   }
-  
+  var user={
+    id:0,
+    name:"",
+    screen_name:"",
+  };
   var newfav = {
     id:parseInt(req.body.id_str),
     id_str,
+    user,
     text,
     created_at: date
   };
@@ -51,7 +56,6 @@ router.post('/:hacerPost', (req, res) => {
 
   // add a new book to the array
   favs.push(newfav);
-  
 
   // saving the array in a file
   const json_favs = JSON.stringify(favs);

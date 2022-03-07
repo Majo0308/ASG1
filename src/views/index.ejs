@@ -12,35 +12,63 @@
 
   <div class="container p-4">
     <div class="row">
+      <div class="container p-4">
+        <h2>All Twits</h2>
+        <form action="/hacerPost" method="POST" target="/" class="card card-body">
+        <%if (favs.length > 0) {%>
 
-    <%if (favs.length > 0) {%>
-
-    <% favs.forEach(function(fav) { %>
-    <div class="container p-1">
-      <div class="column-md-2">
-        <div class="card">
+        <% favs.forEach(function(fav) { %>
+        <div class="container p-1">
+        <div class="column-md-2">
+         <div class="card">
           <div class="card-body bg-white text-black">
             <h4><%= fav.text %></h4>
             <h6><%= fav.created_at %></h6>
+            
           </div>
            
-          <div class="card-header">
-          <a href="/delete/<%= fav.id %>" class="btn btn-primary btn-block ">
-            Delete
-          </a>
+          
+        </div>
+        </div>
+        </div>       
+        <%})%>
+ 
+        <%} else {%>
+          <div class="card card-body text-center">
+          <p>No Tweet yet. <a href="/new-entry">Add A New One</a></p>
+          </div>
+        <%}%>
+      
+      </form>
+    </div>
+    <div class="container p-4">
+      <h2>All User ID</h2>
+      <form action="/hacerPost" method="POST" target="/" class="card card-body">
+      <%if (favs.length > 0) {%>
+
+      <% favs.forEach(function(fav) { %>
+      <div class="container p-1">
+      <div class="column-md-2">
+       <div class="card">
+        <div class="card-body bg-white text-black">
+          <h6><%= fav.user.id %></h6>
         </div>
       </div>
-    </div>
-    </div>
-      
-    <%})%>
+      </div>
+      </div>       
+      <%})%>
 
-    <%} else {%>
-    <div class="card card-body text-center">
-      <p>No Tweet yet. <a href="/new-entry">Add A New One</a></p>
+      <%} else {%>
+        <div class="card card-body text-center">
+        <p>No Tweet yet. <a href="/new-entry">Add A New One</a></p>
+        </div>
+      <%}%>
+    
+    </form>
+  </div>
+
     </div>
-    <%}%>
-    </div>
+
     <div class="container p-4">
       <form action="/hacerPost" method="POST" target="/" class="card card-body">
   
@@ -52,6 +80,7 @@
           <label for="id_str">ID</label>
           <input name="id_str" type="text" class="form-control" placeholder="Entry a New ID" autofocus required>
         </div>
+        
         
         
   
@@ -81,11 +110,25 @@
 
     <% favs.forEach(function(fav) { %>
     <%if(fav.id_str==entrada){%>
+
       
-        <div class="card-body bg-white text-black">
-          <h4><%= fav.text %></h4>
-          <h6><%= fav.created_at %></h6>
-        </div> 
+        <div class="container p-1">
+      <div class="column-md-2">
+        <div class="card">
+          <div class="card-body bg-white text-black">
+            <h4><%= fav.text %></h4>
+            <h6><%= fav.created_at %></h6>
+           
+          </div>
+           
+          <div class="card-header">
+          <a href="/delete/<%= fav.id %>" class="btn btn-primary btn-block ">
+            Delete
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
       
       <% } %>
     <% }); %>
